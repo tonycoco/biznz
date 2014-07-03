@@ -4,15 +4,15 @@ I'm a big fan of stealing.
 
 No, not the kind that can land you behind bars, but the good kind. The open-sourced kind.
 
-We often find ourselves reaching for tools, then building a bunch of one-off piles of code to utilize the tools, but that's not really going to benefit anyone in the long run. Finding the right libraries and frameworks to lift the heavier, more boilerplate work, makes your job easier.
+We often find ourselves building the same patterns and bricks of code. That's not really going to benefit anyone in the long run. Finding the right libraries and frameworks to lift the heavy and tedious boilerplate work can make your life easier.
 
-This is why Ruby on Rails became a household name. Gone were the days of figuring out how to route a request to some code, open a connection and query the database for a record, set up a basic MVC structure and so much more. Rails took care of that for you. It had and continues to have strong conventions and opinions. Frameworks, like Rails and Ember.js, make the "unimportant" design decisions in your application so you can try to focus on the important ones [Read: ["The Framework isn't for You"](http://www.devmynd.com/blog/2014-5-the-framework-isn-t-for-you)]. So, why do we keep building the same building blocks over and over?
+This is why Ruby on Rails became a household name. Gone were the days of figuring out how to route a request to some code, open a connection and query the database for a record, create an object from that record, set up a MVC structure and so much more. Rails took care of that for you. It had and continues to have strong conventions and opinions. Frameworks, like Rails and Ember.js, make the "unimportant" design decisions in your application so you can try to focus on the important ones [Read: ["The Framework isn't for You"](http://www.devmynd.com/blog/2014-5-the-framework-isn-t-for-you)]. So, why do we keep building the same building blocks over and over?
 
 I have no idea.
 
-I'm going to be honest here, I'd much rather rip off a bunch of open-source projects. And when I say, "rip off", I mean utilize. These projects, for the most part, were built and are being built to solve problems that someone else already strangled to death for us.
+I'm going to be honest here, I'd much rather tape together a bunch of open-source projects. These projects, for the most part, were built and are being built to solve problems that someone else already strangled to death for us.
 
-The benefit of leveraging the community at large is easy to articulate. It is not just *your solution*. It's, for the most part, *the solution*. Most popular gems, Rails conventions, Ember.js conventions have been built for the "90% of the time" solution to the problem.
+The benefit of leveraging the community at large is easy to articulate. It is not just *your solution*. It's, for the most part, *the solution*. Most popular gems, Rails conventions, Ember.js conventions have been built for the "90% of the time" solution to the problem. Plus, they are often tried and tested against multiple environments. Bugs have already been squashed. Refactors have been made.
 
 ## Overview
 
@@ -383,19 +383,3 @@ Terrible jokes aside, this is all we need to start building our Ember.js applica
 Test out our endpoints now and fetch the JSON representation of those 10 contacts we just created. Go to `http://localhost:3000/documentation`, click on the contacts link, click on the `GET /api/v1/contacts` link and click the `Try it out!` button.
 
 Alternatively, you can just hit the API directly at `http://localhost:3000/api/v1/contacts`.
-
-### Ember.js Front-End
-
-First, make sure you are in the parent directory that we set up before (biznz)...
-
-    cd ..
-    pwd
-
-On the right directory? Okay, so, we have our Rails API with all the hot stuff you need set up. What do we do with it? Build a front-end application, of course. We are going to be using Ember.js to build our front-end. First, let's install some dependencies...
-
-    npm install -g bower
-    npm install -g ember-cli
-
-Fire up a new application...
-
-    ember new frontend
