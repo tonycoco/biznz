@@ -58,7 +58,7 @@ The Ember CLI has a bunch of great tasks it can help out with. Check them out...
     ember --help
     ember generate --help
 
-### Add-Ons and Ember Data
+### Add-Ons
 
 We need to add in Ember Data. The Ember CLI makes this easy with add-ons (Read: ["Introducing Ember CLI Addons" by Robert Jackson](http://reefpoints.dockyard.com/2014/06/24/introducing_ember_cli_addons.html)). Install the Ember Data add-on...
 
@@ -67,6 +67,8 @@ We need to add in Ember Data. The Ember CLI makes this easy with add-ons (Read: 
 Now, go ahead and reboot that `ember server`. Kill the process with `CTRL+C`. Again...
 
     ember server    
+
+## Ember Data
 
 To get Ember Data to communicate with our [Rails API from Part 1](PART_1.md) we need to set up a few things. Use the CLI to generate an adapter...
 
@@ -84,3 +86,69 @@ export default DS.ActiveModelAdapter.extend({
 ```
 
 What we've done here is told Ember Data how to connect to the correct API host. It also namespaces each call to fetch records with our API's prefix. Since we are using the `active_model_serializers` gem on our Rails API, we can serialize/deserialize the JSON correctly by utilizing the `DS.ActiveModelAdapter`.
+
+## The Router
+
+We need a way to direct our users to our contacts page to show them a list of contacts and then click into them and get the contact's details.
+
+Edit `app/router.js`...
+
+```javascript
+import Ember from 'ember';
+
+var Router = Ember.Router.extend({
+  location: FrontEndENV.locationType
+});
+
+Router.map(function() {
+  this.resource('contacts', function() {
+    this.resource('contact', { path: '/:contact_id' });
+  });
+});
+
+export default Router;
+```
+
+## Templates
+
+Our routes are set up so now we can add some links to get users to them. Edit the `app/templates/application.hbs` template...
+
+```handlebars
+<h2>Biznz</h2>
+
+<ul>
+  <li>{{link-to 'Contacts' 'contacts'}}</li>
+</ul>
+
+<hr>
+
+{{outlet}}
+```
+
+Okay, so that's our basic frame. Very business-like.
+
+## Models
+
+Generate a model to start pulling in that API data and encapsulating it as an Ember object...
+
+    ember generate model contact
+
+Let's set up the attributes of the contact model. Edit `app/models/contact.js`...
+
+## Routes
+
+We now need a route for our contacts...
+
+    ember generate route contacts/index
+
+Edit `app/routes/contacts/index.js`...
+
+```javascript
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model: function() {
+    return this.store.find('contact');
+  }
+});
+```

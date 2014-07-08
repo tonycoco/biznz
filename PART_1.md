@@ -121,11 +121,33 @@ gem "active_model_serializers"
 gem "grape"
 gem "grape-active_model_serializers"
 gem "grape-swagger-rails"
+gem "rack-cors", require: "rack/cors"
 ```
 
 And...
 
     bundle install
+
+CORS. F CORS. This part sucks, but we have to allow our API to easily connect to our Front-End application (Read: ["Understanding Cross-Origin Resource Sharing (CORS)" by Brian Rinaldi](http://www.adobe.com/devnet/html5/articles/understanding-cross-origin-resource-sharing-cors.html)). Edit `config/application.rb`...
+
+```ruby
+require File.expand_path("../boot", __FILE__)
+
+require "rails/all"
+
+Bundler.require(*Rails.groups)
+
+module Api
+  class Application < Rails::Application
+    config.middleware.use Rack::Cors do
+      allow do
+        origins "*"
+        resource "*", headers: :any, methods: [:get, :post, :put, :delete, :options]
+      end
+    end
+  end
+end
+```
 
 Now, let's generate the serializer that we can use with our `Contact` model using the [active_model_serializers](https://github.com/rails-api/active_model_serializers) gem...
 
