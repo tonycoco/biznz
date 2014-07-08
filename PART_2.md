@@ -68,4 +68,19 @@ Now, go ahead and reboot that `ember server`. Kill the process with `CTRL+C`. Ag
 
     ember server    
 
-To get Ember Data to communicate with our [Rails API from Part 1](PART_1.md) we need to set up a few things. Open and edit ``...
+To get Ember Data to communicate with our [Rails API from Part 1](PART_1.md) we need to set up a few things. Use the CLI to generate an adapter...
+
+    ember generate adapter application
+
+Now open and edit `app/adapters/application.js`...
+
+```javascript
+import DS from 'ember-data';
+
+export default DS.ActiveModelAdapter.extend({
+  namespace: 'api/v1',
+  host: 'http://localhost:3000'
+});
+```
+
+What we've done here is told Ember Data how to connect to the correct API host. It also namespaces each call to fetch records with our API's prefix. Since we are using the `active_model_serializers` gem on our Rails API, we can serialize/deserialize the JSON correctly by utilizing the `DS.ActiveModelAdapter`.
