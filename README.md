@@ -8,7 +8,7 @@ No, not the kind that can land you behind bars, but the good kind. The open-sour
 
 We often find ourselves building the same patterns and bricks of code. That's not really going to benefit anyone in the long run. Finding the right libraries and frameworks to lift the heavy and tedious boilerplate work can make your life easier.
 
-This is why Ruby on Rails became a household name. Gone were the days of figuring out how to route a request to some code, open a connection and query the database for a record, create an object from that record, set up a MVC structure and so much more. Rails took care of that for you. It had and continues to have strong conventions and opinions. Frameworks, like Rails and Ember.js, make the "unimportant" design decisions in your application so you can try to focus on the important ones [Read: ["The Framework isn't for You"](http://www.devmynd.com/blog/2014-5-the-framework-isn-t-for-you)]. So, why do we keep building the same building blocks over and over?
+This is why Ruby on Rails became a household name. Gone were the days of figuring out how to route a request to some code, open a connection and query the database for a record, create an object from that record, set up a MVC structure and so much more. Rails took care of that for you. It had and continues to have strong conventions and opinions. Frameworks, like Rails and Ember.js, make the "unimportant" design decisions in your application so you can try to focus on the important ones (Read: ["The Framework isn't for You" by Joe Hirn](http://www.devmynd.com/blog/2014-5-the-framework-isn-t-for-you)). So, why do we keep building the same building blocks over and over?
 
 I have no idea.
 
