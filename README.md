@@ -1,6 +1,6 @@
 # Rails + Ember.js: Redux
 
-*Updated: 6/8/2014*
+*Last updated: July 8th, 2014*
 
 I'm a big fan of stealing.
 
@@ -50,7 +50,7 @@ Since this application is going to be so Web 2.0, I left out a bunch of letters 
 
 ## The Saga
 
-There are 2 parts available so far.
+There are 2 parts available so far...
 
 - [Part 1: The API and CMS](PART_1.md)
 - [Part 2: The Front-End](PART_2.md)

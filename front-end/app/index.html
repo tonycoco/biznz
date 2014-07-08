@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FrontEnd</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{BASE_TAG}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/front-end.css">
+  </head>
+  <body>
+    <script>
+      window.FrontEndENV = {{ENV}};
+      window.EmberENV = window.FrontEndENV.EmberENV;
+    </script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/front-end.js"></script>
+    <script>
+      window.FrontEnd = require('front-end/app')['default'].create(FrontEndENV.APP);
+    </script>
+  </body>
+</html>

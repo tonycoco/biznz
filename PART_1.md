@@ -1,14 +1,21 @@
 # Part 1: The API and CMS
 
-Let's start by getting a new Rails application started...
+Get this party started. Let's build an API and CMS to expose our data layer to the world.
+
+## I Love Typing Rails New
+
+Install the latest Rails gem...
 
     gem install rails
+
+My favorite thing in the world is to start something brand new without and garbage...
+
     rails new api -T -d postgresql
     cd api
 
 Okay. Thanks, Rails. You just gave us ~70% of what we needed to start this sucker. The `-T` switch tells Rails we are not going to use `TestUnit` and the `-d postgresql` switch tells Rails that we want to use a PostgreSQL database.
 
-#### Gems
+## Gems
 
 We need to add a bunch of gems now. Edit the `Gemfile` and add...
 
@@ -55,7 +62,7 @@ And now, bundle it all up...
 
     bundle install
 
-#### Generators
+## Generators
 
 Let's generate a few things for these gems too...
 
@@ -64,7 +71,7 @@ Let's generate a few things for these gems too...
     spring binstub --all
     rake db:create db:migrate
 
-#### Spec Runner
+## Spec Runner
 
 The newest versions of Rspec output all warnings. It's ridiculous. Let's remove that before we begin. In the `.rspec` file remove the line...
 
@@ -76,7 +83,7 @@ Let's try to run the specs...
 
 You should get some pending specs for the `AdminUser` model that ActiveAdmin generated for us. No worries. We love freebies.
 
-#### Serve It Up
+## Serve It Up
 
 Start your Rails server...
 
@@ -89,7 +96,7 @@ Password: `password`
 
 Yes, this is not the most secure thing to keep in your database, but it's great for quick examples like this. You should see an admin dashboard once you log in.
 
-#### Let's Make a Resource
+## Let's Make a Resource
 
 We are going to generate a `Contact` model for us to administrate with ActiveAdmin...
 
@@ -105,7 +112,7 @@ Migrate the database up...
 
 Perf. Now, we've got a model and ActiveAdmin's users can edit them. Try it for yourself by going to `http://localhost:3000/admin/contacts`.
 
-#### Exposing an API
+## Exposing an API
 
 Eventually, our Ember.js application is going to use Ember-Data to grab records over the wire and create Ember Objects for our front-end application to use. We are going to expose an API layer from the Rails application using Grape's API gem. Let's add in a few useful gems to our `Gemfile`...
 
@@ -246,7 +253,7 @@ This looks like a lot, but it's mostly just simple configuration. We are utilizi
 
 Including this file will make mounting more and more API endpoints much easier. Default behavior can be centralized to a single spot.
 
-#### Auto-Documentation
+## Auto-Documentation
 
 Swagger, the documentation generator, needs a few configuration changes at our Rails app's initialization. Edit `app/config/initializers/grape.rb`...
 
@@ -256,7 +263,7 @@ GrapeSwaggerRails.options.app_name = "Biznz"
 GrapeSwaggerRails.options.app_url = "http://localhost:3000"
 ```
 
-#### Try It Out
+## Try It Out
 
 For good measure, restart your `rails server`.
 
@@ -266,7 +273,7 @@ Wow.
 
 Now, your mobile team can stop hassling you to update your API design docs. Just give them a URL and tell them to cool it. If you tried to make a request with the Swagger tool, you might realize you need some data now. We'll get to that.
 
-#### Testing
+## Testing
 
 First, let's write some specs, get a factory started and add some validations to our model. Need some example specs? Check out my Gist on [The Greatest Hits of RSpec: Volume 1](https://gist.github.com/tonycoco/8798536). After that, open the spec `spec/models/contact_spec.rb`...
 
@@ -326,7 +333,7 @@ Now, run the specs...
 
 Beautifully green... I hope.
 
-#### B.S.
+## B.S.
 
 Getting that fake data into our API application is easy...
 
@@ -340,8 +347,12 @@ That should give us 10 fake contacts. Just like my Rolodex, am I right?
 
 Terrible jokes aside, this is all we need to start building our Ember.js application front-end to fetch a few contacts.
 
-#### It's Working!
+## It's Working!
 
 Test out our endpoints now and fetch the JSON representation of those 10 contacts we just created. Go to `http://localhost:3000/documentation`, click on the contacts link, click on the `GET /api/v1/contacts` link and click the `Try it out!` button.
 
 Alternatively, you can just hit the API directly at `http://localhost:3000/api/v1/contacts`.
+
+## Moving On
+
+You're now ready for [Part 2: The Front-End](PART_2.md).
