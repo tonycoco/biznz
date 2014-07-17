@@ -2,6 +2,8 @@
 
 *Last updated: July 17th, 2014*
 
+*Looking for [Part 1?](PART_1.md)*
+
 So, you've got the API and a sleek new CMS to manage your data layer. Now what?
 
 Celebrate.
