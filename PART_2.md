@@ -8,7 +8,7 @@ Repeat the celebration as much as you see fit and then come back here because we
 
 ## It's Always Sunny in Ember.js
 
-Ember.js has a gang now. It's got a lot of characters and it could be quite daunting for someone without any knowledge of how the different pieces fit and play along. Some call this Ember's "learning cliff". Ember's learning cliff is tough, but it instills a bit of what makes server-side frameworks like Rails so nice...
+Ember.js has a gang now. It's got a lot of characters and it could be quite daunting for someone without any knowledge of how the different pieces fit and play along. Some call this Ember's "learning cliff". Ember's "learning cliff" is tough, but it instills a bit of what makes server-side frameworks like Rails so nice...
 
 Conventions.
 
@@ -66,7 +66,7 @@ We need to add in Ember Data. The Ember CLI makes this easy with add-ons (Read: 
 
 Now, go ahead and reboot that `ember server`. Kill the process with `CTRL+C`. Again...
 
-    ember server    
+    ember server
 
 ## Ember Data
 
@@ -117,6 +117,7 @@ Our routes are set up so now we can add some links to get users to them. Edit th
 <h2>Biznz</h2>
 
 <ul>
+  <li>{{link-to 'Home' 'index'}}</li>
   <li>{{link-to 'Contacts' 'contacts'}}</li>
 </ul>
 
@@ -152,3 +153,74 @@ export default Ember.Route.extend({
   }
 });
 ```
+
+## Tied Together
+
+With this new route, we can edit its template that the Ember CLI generated for us. Edit `app/templates/contacts/index.hbs`...
+
+```handlebars
+<ul>
+  {{#each}}
+    <li>
+      {{#link-to 'contact' this}}
+        {{lastName}},
+        {{firstName}}
+      {{/link-to}}
+    </li>
+  {{else}}
+    <li>No contacts found.</li>
+  {{/each}}
+</ul>
+```
+
+Great. Now, we've got some contacts showing up. But, we probably want to have a route for a detail page of each contact. We used the `link-to` Handlebars helper and passed it the route and a context. Let's create that `contact` route...
+
+    ember generate route contact
+
+Edit `app/routes/contact.js`...
+
+```javascript
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  model: function(params) {
+    return this.store.find('contact', params.contact_id);
+  }
+});
+```
+
+This will use the params from the URL to reach into Ember Data's `store` and return the contact we want. Let's work on displaying some detail information. A template for the detail information was generated with our route. Edit `app/templates/contact.hbs`...
+
+```handlebars
+<h1>{{firstName}} {{lastName}}</h1>
+
+<dl>
+  <dt>Email</dt>
+  <dd>{{email}}</dd>
+
+  <dt>Title</dt>
+  <dd>{{title}}</dd>
+</dl>
+
+<p>
+  Updated at: {{updatedAt}}
+  <br>
+  Created at: {{createdAt}}
+</p>
+```
+
+This is awesome. We built an application! Pop the champ'. But, wow, that date in the detail page for a contact looks like straight nerd garbage. Let's fix that.
+
+## In The Moment(.js)
+
+Ember Data is grabbing the date information from our JSON API responses and is spilling out the dates like this right now...
+
+`Thu Jul 03 2014 10:59:55 GMT-0500 (CDT)`
+
+Gross.
+
+We can do better, people.
+
+Let's add in [Moment.js](http://momentjs.com) and format those dates up.
+
+First, 
