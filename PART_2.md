@@ -223,4 +223,68 @@ We can do better, people.
 
 Let's add in [Moment.js](http://momentjs.com) and format those dates up.
 
-First, 
+First, add Moment.js with Bower...
+
+    bower install moment --save
+
+Now, we can import it to our Ember CLI application. Edit `Brocfile.js`...
+
+```javascript
+/* global require, module */
+
+var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+
+var app = new EmberApp();
+
+app.import('vendor/moment/moment.js');
+
+module.exports = app.toTree();
+```
+
+Generate our very first helper...
+
+    ember generate helper formatted-date
+
+And edit `app/helpers/formatted-date.js`...
+
+```javascript
+/* global moment:true */
+
+import Ember from 'ember';
+
+export default Ember.Handlebars.makeBoundHelper(function(date, format) {
+  return moment(date).format(format);
+});
+```
+
+Notice how we had to tell JSHint to shut up. It's because Moment.js has a global it doesn't know about. You could choose to add that to your `.jshintrc` file in the `"predef"` section.
+
+Put that helper to work on our contact detail template. Edit `app/templates/contact.hbs`...
+
+```handlebars
+<h1>{{firstName}} {{lastName}}</h1>
+
+<dl>
+  <dt>Email</dt>
+  <dd>{{email}}</dd>
+
+  <dt>Title</dt>
+  <dd>{{title}}</dd>
+</dl>
+
+<p>
+  Updated at: {{formatted-date updatedAt 'MMMM Do, YYYY [at] h:mm'}}
+  <br>
+  Created at: {{formatted-date createdAt 'MMMM Do, YYYY [at] h:mm'}}
+</p>
+```
+
+This outputs the dates nicely as...
+
+`July 3rd, 2014 at 10:59`
+
+Looks good to me.
+
+## More Coming Soon...
+
+I plan on making more parts and showing more of the Ember CLI and how to leverage some of the cool things that are happening with Ember CLI Add-Ons. Check back for more updates.
