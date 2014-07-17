@@ -1,4 +1,4 @@
-# Part 2: The Front-End
+# Part 2: The Front-End with Ember and the Ember CLI
 
 *Last updated: July 17th, 2014*
 

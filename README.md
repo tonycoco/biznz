@@ -1,4 +1,4 @@
-# Rails + Ember.js: Redux
+# Rails + Ember.js (with the Ember CLI): Redux
 
 *Last updated: July 17th, 2014*
 

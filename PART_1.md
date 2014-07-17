@@ -1,4 +1,4 @@
-# Part 1: The API and CMS
+# Part 1: The API and CMS with Ruby on Rails
 
 *Last updated: July 17th, 2014*
 
