@@ -18,7 +18,7 @@ The benefit of leveraging the community at large is easy to articulate. It is no
 
 ## Overview
 
-In this blog post I'd like to try to build a simple API and front-end application stack. (Note: I'm going to overuse the word "leverage" a ton. Just deal with it.) I'll try to leverage as many open-sourced libraries and frameworks to make our API and front-end application stacks simple and easy to follow.
+In this series of blog posts I'd like to try to build a simple API and front-end application stack. (Note: I'm going to overuse the word "leverage" a ton. Just deal with it.) I'll try to leverage as many open-sourced libraries and frameworks to make our API and front-end application stacks simple and easy to follow.
 
 Dependenices...
 
