@@ -1,6 +1,6 @@
 # Rails + Ember.js: Redux
 
-*Last updated: July 8th, 2014*
+*Last updated: July 17th, 2014*
 
 I'm a big fan of stealing.
 

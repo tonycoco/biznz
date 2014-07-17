@@ -1,5 +1,7 @@
 # Part 2: The Front-End
 
+*Last updated: July 17th, 2014*
+
 So, you've got the API and a sleek new CMS to manage your data layer. Now what?
 
 Celebrate.
