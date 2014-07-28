@@ -68,10 +68,10 @@ And now, bundle it all up...
 
 Let's generate a few things for these gems too...
 
-    rails generate rspec:install
-    rails generate active_admin:install
-    spring binstub --all
-    rake db:create db:migrate
+    bundle exec rails generate rspec:install
+    bundle exec rails generate active_admin:install
+    bundle exec spring binstub --all
+    bundle exec rake db:create db:migrate
 
 ## Spec Runner
 
@@ -81,7 +81,7 @@ The newest versions of Rspec output all warnings. It's ridiculous. Let's remove 
 
 Let's try to run the specs...
 
-    rake
+    bundle exec rake
 
 You should get some pending specs for the `AdminUser` model that ActiveAdmin generated for us. No worries. We love freebies.
 
@@ -89,7 +89,7 @@ You should get some pending specs for the `AdminUser` model that ActiveAdmin gen
 
 Start your Rails server...
 
-    rails server
+    bundle exec rails server
 
 Now, open your web browser to `http://localhost:3000/admin`. You should get a log in screen. Good thing for us is that ActiveAdmin's generator also created a user for us to use...
 
@@ -102,15 +102,15 @@ Yes, this is not the most secure thing to keep in your database, but it's great 
 
 We are going to generate a `Contact` model for us to administrate with ActiveAdmin...
 
-    rails generate model contact first_name:string last_name:string email:string title:string
+    bundle exec rails generate model contact first_name:string last_name:string email:string title:string
 
 And the ActiveAdmin DSL file...
 
-    rails generate active_admin:resource contact
+    bundle exec rails generate active_admin:resource contact
 
 Migrate the database up...
 
-    rake db:migrate
+    bundle exec rake db:migrate
 
 Perf. Now, we've got a model and ActiveAdmin's users can edit them. Try it for yourself by going to `http://localhost:3000/admin/contacts`.
 
@@ -153,7 +153,7 @@ end
 
 Now, let's generate the serializer that we can use with our `Contact` model using the [active_model_serializers](https://github.com/rails-api/active_model_serializers) gem...
 
-    rails generate serializer contact
+    bundle exec rails generate serializer contact
 
 This new serializer needs a few attributes exposed. Edit the `app/serializers/contact.rb` file...
 
@@ -289,7 +289,7 @@ GrapeSwaggerRails.options.app_url = "http://localhost:3000"
 
 ## Try It Out
 
-For good measure, restart your `rails server`.
+For good measure, restart your `bundle exec rails server`.
 
 You should now be able to point your favorite web browser at `http://localhost:3000/documentation` and see some documentation that Swagger generated (with Grape's DSL) for *free*. Click the `contacts` link to show the API endpoints. Now, click on each of the two endpoints we created before.
 
@@ -321,7 +321,7 @@ end
 
 Okay, so we've got a few things here. I'm using the `shouldda-matchers` gem for some of the validation specs. If you haven't seen those matchers in Rspec, [take a look here](https://github.com/thoughtbot/shoulda-matchers). This is a good start. Let's run those specs...
 
-    rake
+    bundle exec rake
 
 Fail.
 
@@ -353,7 +353,7 @@ To clean up the spec runner, let's remove that pesky `AdminUser`'s generated spe
 
 Now, run the specs...
 
-    rake
+    bundle exec rake
 
 Beautifully green... I hope.
 
@@ -361,7 +361,7 @@ Beautifully green... I hope.
 
 Getting that fake data into our API application is easy...
 
-    rails console
+    bundle exec rails console
 
 Now issue some commands to Rails...
 
