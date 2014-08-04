@@ -108,7 +108,15 @@ And the ActiveAdmin DSL file...
 
     bundle exec rails generate active_admin:resource contact
 
-Migrate the database up...
+But, we need to make sure the params are permitted. Edit `app/admin/contact.rb`...
+
+```ruby
+ActiveAdmin.register Contact do
+  permit_params :id, :first_name, :last_name, :email, :title, :created_at, :updated_at
+end
+```
+
+Now, migrate the database up...
 
     bundle exec rake db:migrate
 
