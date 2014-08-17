@@ -214,7 +214,7 @@ module API
 end
 ```
 
-We can now start our `app/controllers/api/contacts.rb` file...
+We can now start our `app/controllers/api/v1/contacts.rb` file...
 
 ```ruby
 module API
@@ -287,7 +287,7 @@ Including this file will make mounting more and more API endpoints much easier. 
 
 ## Auto-Documentation
 
-Swagger, the documentation generator, needs a few configuration changes at our Rails app's initialization. Edit `app/config/initializers/grape.rb`...
+Swagger, the documentation generator, needs a few configuration changes at our Rails app's initialization. Edit `api/config/initializers/grape.rb`...
 
 ```ruby
 GrapeSwaggerRails.options.url = "/api/v1/swagger_doc.json"
