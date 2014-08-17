@@ -287,7 +287,7 @@ Including this file will make mounting more and more API endpoints much easier. 
 
 ## Auto-Documentation
 
-Swagger, the documentation generator, needs a few configuration changes at our Rails app's initialization. Edit `api/config/initializers/grape.rb`...
+Swagger, the documentation generator, needs a few configuration changes at our Rails app's initialization. Edit `config/initializers/grape.rb`...
 
 ```ruby
 GrapeSwaggerRails.options.url = "/api/v1/swagger_doc.json"
