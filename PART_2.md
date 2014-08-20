@@ -91,23 +91,6 @@ export default DS.ActiveModelAdapter.extend({
 
 What we've done here is told Ember Data how to connect to the correct API host. It also namespaces each call to fetch records with our API's prefix. Since we are using the `active_model_serializers` gem on our Rails API, we can serialize/deserialize the JSON correctly by utilizing the `DS.ActiveModelAdapter`.
 
-### Super Models
-
-Let's pop some data into Ember Data. We're going to need a model. Open and edit `app/models/contact.js`...
-
-```javascript
-import DS from 'ember-data';
-
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  lastName: DS.attr('string'),
-  email: DS.attr('string'),
-  title: DS.attr('string'),
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date')
-});
-```
-
 ## The Router
 
 We need a way to direct our users to our contacts page to show them a list of contacts and then click into them and get the contact's details.
@@ -156,6 +139,19 @@ Generate a model to start pulling in that API data and encapsulating it as an Em
     ember generate model contact
 
 Let's set up the attributes of the contact model. Edit `app/models/contact.js`...
+
+```javascript
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  email: DS.attr('string'),
+  title: DS.attr('string'),
+  createdAt: DS.attr('date'),
+  updatedAt: DS.attr('date')
+});
+```
 
 ## Routes
 
