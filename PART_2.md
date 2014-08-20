@@ -1,6 +1,6 @@
 # Part 2: The Front-End with Ember and the Ember CLI
 
-*Last updated: July 17th, 2014*
+*Last updated: August 20th, 2014*
 
 *Looking for [Part 1?](PART_1.md)*
 
@@ -90,6 +90,23 @@ export default DS.ActiveModelAdapter.extend({
 ```
 
 What we've done here is told Ember Data how to connect to the correct API host. It also namespaces each call to fetch records with our API's prefix. Since we are using the `active_model_serializers` gem on our Rails API, we can serialize/deserialize the JSON correctly by utilizing the `DS.ActiveModelAdapter`.
+
+### Super Models
+
+Let's pop some data into Ember Data. We're going to need a model. Open and edit `app/models/contact.js`...
+
+```javascript
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  email: DS.attr('string'),
+  title: DS.attr('string'),
+  createdAt: DS.attr('date'),
+  updatedAt: DS.attr('date')
+});
+```
 
 ## The Router
 
