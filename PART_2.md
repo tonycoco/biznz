@@ -66,7 +66,7 @@ The Ember CLI has a bunch of great tasks it can help out with. Check them out...
 
 We need to add in Ember Data. The Ember CLI makes this easy with add-ons (Read: ["Introducing Ember CLI Addons" by Robert Jackson](http://reefpoints.dockyard.com/2014/06/24/introducing_ember_cli_addons.html)). Install the Ember Data add-on...
 
-    npm install --save-dev ember-cli-ember-data
+    npm install --save-dev ember-data
 
 Now, go ahead and reboot that `ember server`. Kill the process with `CTRL+C`. Again...
 
@@ -253,7 +253,7 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
 
-app.import('vendor/moment/moment.js');
+app.import('bower_components/moment/moment.js');
 
 module.exports = app.toTree();
 ```
