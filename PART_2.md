@@ -1,6 +1,6 @@
 # Part 2: The Front-End with Ember and the Ember CLI
 
-*Last updated: August 20th, 2014*
+*Last updated: November 28th, 2014*
 
 *Looking for [Part 1?](PART_1.md)*
 
@@ -62,16 +62,6 @@ The Ember CLI has a bunch of great tasks it can help out with. Check them out...
     ember --help
     ember generate --help
 
-### Add-Ons
-
-We need to add in Ember Data. The Ember CLI makes this easy with add-ons (Read: ["Introducing Ember CLI Addons" by Robert Jackson](http://reefpoints.dockyard.com/2014/06/24/introducing_ember_cli_addons.html)). Install the Ember Data add-on...
-
-    npm install --save-dev ember-cli-ember-data
-
-Now, go ahead and reboot that `ember server`. Kill the process with `CTRL+C`. Again...
-
-    ember server
-
 ## Ember Data
 
 To get Ember Data to communicate with our [Rails API from Part 1](PART_1.md) we need to set up a few things. Use the CLI to generate an adapter...
@@ -99,9 +89,10 @@ Edit `app/router.js`...
 
 ```javascript
 import Ember from 'ember';
+import config from './config/environment';
 
 var Router = Ember.Router.extend({
-  location: FrontEndENV.locationType
+  location: config.locationType
 });
 
 Router.map(function() {
@@ -253,7 +244,20 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
 
-app.import('vendor/moment/moment.js');
+// Use `app.import` to add additional libraries to the generated
+// output files.
+//
+// If you need to use different assets in different
+// environments, specify an object as the first parameter. That
+// object's keys should be the environment name and the values
+// should be the asset to use in that environment.
+//
+// If the library that you are including contains AMD or ES6
+// modules that you would like to import into your application
+// please specify an object with the list of modules as keys
+// along with the exports of each module as its value.
+
+app.import('bower_components/moment/moment.js');
 
 module.exports = app.toTree();
 ```

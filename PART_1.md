@@ -1,6 +1,6 @@
 # Part 1: The API and CMS with Ruby on Rails
 
-*Last updated: July 17th, 2014*
+*Last updated: November 28th, 2014*
 
 Get this party started. Let's build an API and CMS to expose our data layer to the world.
 

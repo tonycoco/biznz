@@ -1,6 +1,6 @@
 # Rails + Ember.js (with the Ember CLI): Redux
 
-*Last updated: July 17th, 2014*
+*Last updated: November 28th, 2014*
 
 I'm a big fan of stealing.
 
@@ -23,7 +23,7 @@ In this series of blog posts I'd like to try to build a simple API and front-end
 Dependenices...
 
 - PostgreSQL
-- Ruby 2.1.1
+- Ruby 2.1.5
 - Node.js and NPM
 
 Here's what we will be using...

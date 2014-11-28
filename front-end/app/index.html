@@ -7,20 +7,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{BASE_TAG}}
+    {{content-for 'head'}}
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/front-end.css">
   </head>
   <body>
-    <script>
-      window.FrontEndENV = {{ENV}};
-      window.EmberENV = window.FrontEndENV.EmberENV;
-    </script>
+    {{content-for 'body'}}
+
     <script src="assets/vendor.js"></script>
     <script src="assets/front-end.js"></script>
-    <script>
-      window.FrontEnd = require('front-end/app')['default'].create(FrontEndENV.APP);
-    </script>
   </body>
 </html>
