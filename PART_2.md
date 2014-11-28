@@ -302,7 +302,7 @@ Put that helper to work on our contact detail template. Edit `app/templates/cont
 
 This outputs the dates nicely as...
 
-`July 3rd, 2014 at 10:59`
+`July 3rd, 2014 at 10:59 am`
 
 Looks good to me.
 
