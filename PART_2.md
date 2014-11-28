@@ -294,9 +294,9 @@ Put that helper to work on our contact detail template. Edit `app/templates/cont
 </dl>
 
 <p>
-  Updated at: {{formatted-date updatedAt 'MMMM Do, YYYY [at] h:mm'}}
+  Updated at: {{formatted-date updatedAt 'MMMM Do, YYYY [at] h:mm a'}}
   <br>
-  Created at: {{formatted-date createdAt 'MMMM Do, YYYY [at] h:mm'}}
+  Created at: {{formatted-date createdAt 'MMMM Do, YYYY [at] h:mm a'}}
 </p>
 ```
 
