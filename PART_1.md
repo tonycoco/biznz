@@ -1,6 +1,6 @@
 # Part 1: The API and CMS with Ruby on Rails
 
-*Last updated: November 28th, 2014*
+*Last updated: April 1th, 2015*
 
 Get this party started. Let's build an API and CMS to expose our data layer to the world.
 
@@ -19,16 +19,30 @@ Okay. Thanks, Rails. You just gave us ~70% of what we needed to start this sucke
 
 ## Gems
 
-We need to add a bunch of gems now. Edit the `Gemfile` and add...
+We need to add a bunch of gems now. Edit the `Gemfile` and make it look like...
 
 ```ruby
-gem "activeadmin", github: "gregbell/active_admin" # Until it's 1.0.0
+source "https://rubygems.org"
+
+gem "rails", "4.2.1"
+
+gem "activeadmin", github: "gregbell/active_admin" # Until it"s 1.0.0
+gem "coffee-rails", "~> 4.0.0"
 gem "devise"
+gem "grape"
+gem "grape-active_model_serializers"
+gem "grape-swagger-rails"
+gem "jquery-rails"
+gem "pg"
+gem "rack-cors", require: "rack/cors"
+gem "sass-rails", "~> 4.0.3"
+gem "uglifier", ">= 1.3.0"
 
 group :development do
   gem "better_errors"
   gem "meta_request"
   gem "quiet_assets"
+  gem "spring"
 end
 
 group :development, :test do
@@ -51,15 +65,6 @@ end
 
 I won't go into any detail here, these are mostly to make your life as a developer easier. Feel free to look each of them up on [RubyGems.org](http://rubygems.org).
 
-You can also comment out a few gems that we aren't going to need...
-
-```ruby
-# gem 'coffee-rails', '~> 4.0.0'
-# gem 'turbolinks'
-# gem 'jbuilder', '~> 2.0'
-# gem 'sdoc', '~> 0.4.0',          group: :doc
-```
-
 And now, bundle it all up...
 
     bundle install
@@ -74,10 +79,6 @@ Let's generate a few things for these gems too...
     bundle exec rake db:create db:migrate
 
 ## Spec Runner
-
-The newest versions of Rspec output all warnings. It's ridiculous. Let's remove that before we begin. In the `.rspec` file remove the line...
-
-    --warnings
 
 Let's try to run the specs...
 
@@ -124,7 +125,7 @@ Perf. Now, we've got a model and ActiveAdmin's users can edit them. Try it for y
 
 ## Exposing an API
 
-Eventually, our Ember.js application is going to use Ember-Data to grab records over the wire and create Ember Objects for our front-end application to use. We are going to expose an API layer from the Rails application using Grape's API gem. Let's add in a few useful gems to our `Gemfile`...
+Eventually, our Ember.js application is going to use Ember-Data to grab records over the wire and create Ember Objects for our front-end application to use. We are going to expose an API layer from the Rails application using Grape's API gem. These gems that we added earlier help us get JSON responses back to Ember-Data correctly. Let's review those from the `Gemfile`...
 
 ```ruby
 gem "active_model_serializers"
@@ -134,17 +135,15 @@ gem "grape-swagger-rails"
 gem "rack-cors", require: "rack/cors"
 ```
 
-And...
-
-    bundle install
-
 CORS. F CORS. This part sucks, but we have to allow our API to easily connect to our Front-End application (Read: ["Understanding Cross-Origin Resource Sharing (CORS)" by Brian Rinaldi](http://www.adobe.com/devnet/html5/articles/understanding-cross-origin-resource-sharing-cors.html)). Edit `config/application.rb`...
 
 ```ruby
-require File.expand_path("../boot", __FILE__)
+require File.expand_path('../boot', __FILE__)
 
-require "rails/all"
+require 'rails/all'
 
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Api
@@ -155,6 +154,21 @@ module Api
         resource "*", headers: :any, methods: [:get, :post, :put, :delete, :options]
       end
     end
+
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
+
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    # config.time_zone = 'Central Time (US & Canada)'
+
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    # config.i18n.default_locale = :de
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
 ```
@@ -290,7 +304,7 @@ Including this file will make mounting more and more API endpoints much easier. 
 Swagger, the documentation generator, needs a few configuration changes at our Rails app's initialization. Edit `config/initializers/grape.rb`...
 
 ```ruby
-GrapeSwaggerRails.options.url = "/api/v1/swagger_doc.json"
+GrapeSwaggerRails.options.url = "/api/v1/swagger_doc"
 GrapeSwaggerRails.options.app_name = "Biznz"
 GrapeSwaggerRails.options.app_url = "http://localhost:3000"
 ```

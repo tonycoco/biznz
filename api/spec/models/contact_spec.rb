@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Contact do
   it "should have a factory" do
