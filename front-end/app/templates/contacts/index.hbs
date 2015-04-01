@@ -1,9 +1,9 @@
 <ul>
-  {{#each}}
+  {{#each contact in model}}
     <li>
-      {{#link-to 'contact' this}}
-        {{lastName}},
-        {{firstName}}
+      {{#link-to 'contact' contact}}
+        {{contact.lastName}},
+        {{contact.firstName}}
       {{/link-to}}
     </li>
   {{else}}

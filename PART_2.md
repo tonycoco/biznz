@@ -1,6 +1,6 @@
 # Part 2: The Front-End with Ember and the Ember CLI
 
-*Last updated: November 28th, 2014*
+*Last updated: April 1st, 2015*
 
 *Looking for [Part 1?](PART_1.md)*
 
@@ -26,7 +26,7 @@ Here are the basics about a standard Ember.js stack:
 You're going to need to know a bit about each part. Not just that, but also a bit on how Ember.js itself is structured. Here are some relevant links...
 
 * [Ember.js Guides](http://emberjs.com/guides)
-* [Ember CLI Documentation](http://iamstef.net/ember-cli)
+* [Ember CLI Documentation](http://www.ember-cli.com)
 * ["Ember Data: A Comprehensive Tutorial for the ember-data Library" by Pooyan Khosravy](http://www.toptal.com/emberjs/a-thorough-guide-to-ember-data)
 
 ## Ember CLI
@@ -49,7 +49,7 @@ Bakawh! Ember. Looking like Rails? Yep. That's the point. The Ember.js team is s
 
 Check to make sure everything is working...
 
-    ember server
+    ember serve
 
 Wait for it... Next, point your browser at `http://localhost:4200` and see the "Welcome to Ember.js" heading on your screen.
 
@@ -95,13 +95,11 @@ var Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
+export default Router.map(function() {
   this.resource('contacts', function() {
     this.resource('contact', { path: '/:contact_id' });
   });
 });
-
-export default Router;
 ```
 
 ## Templates
@@ -168,11 +166,11 @@ With this new route, we can edit its template that the Ember CLI generated for u
 
 ```handlebars
 <ul>
-  {{#each}}
+  {{#each contact in model}}
     <li>
-      {{#link-to 'contact' this}}
-        {{lastName}},
-        {{firstName}}
+      {{#link-to 'contact' contact}}
+        {{contact.lastName}},
+        {{contact.firstName}}
       {{/link-to}}
     </li>
   {{else}}
